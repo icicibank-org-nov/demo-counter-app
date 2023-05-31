@@ -62,14 +62,13 @@
                 }
             }
         }
-        
-        
-        stage ('Send Email') {
+            
+    }
 
-             steps{
 
-                 echo "Mail Stage";
-                archiveArtifacts artifacts: '*.csv', onlyIfSuccessful: true
+    post {
+       always {
+               archiveArtifacts artifacts: '*.csv', onlyIfSuccessful: true
                 
                 emailext to: "lokeshreddy4590@gmail.com",
                 subject: "jenkins build:${currentBuild.currentResult}: ${env.JOB_NAME}",
@@ -79,8 +78,4 @@
             cleanWs()
             }
         }
-    
-        
-    }
-
 }
