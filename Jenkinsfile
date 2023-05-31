@@ -1,7 +1,11 @@
  pipeline {
     agent any
 
-    maven: "maven3.9.2"
+     tools {
+
+    maven "maven3.9.2"
+    
+    }
 
     stages{
 
@@ -41,7 +45,7 @@
             
             steps{
 
-                withSonarQubeEnv(credentialsId: 'sonarqube_cred') {
+                withSonarQubeEnv(credentialsId: 'sonarqube_cred',installationName: 'sonar') {
 
                     sh "mvn clean package sonar:sonar"
                 }
@@ -59,8 +63,12 @@
             }
         }
         
-        post {
-            always{
+        
+        stage ('Send Email') {
+
+             steps{
+
+                 echo "Mail Stage";
                 archiveArtifacts artifacts: '*.csv', onlyIfSuccessful: true
                 
                 emailext to: "lokeshreddy4590@gmail.com",
@@ -71,7 +79,8 @@
             cleanWs()
             }
         }
-
+    
+        
     }
 
 }
