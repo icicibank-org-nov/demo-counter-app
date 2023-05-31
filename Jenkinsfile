@@ -64,7 +64,8 @@
         }
 
     stage ('Send Email') {
-        echo "Mail Stage";
+        steps{
+          echo "Mail Stage";
 
          mail to: "lokeshreddy4590@gmail.com",
          cc: 'lokeshreddy05690@gmail.com', charset: 'UTF-8', 
@@ -72,7 +73,12 @@
          bcc: '',
          subject: "CI: Project name -> ${env.JOB_NAME}",
          body: "<b>Example</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> URL de build: ${env.BUILD_URL}";
-    }    
+         
+        }
+        
+    } 
+    
+       
             
     }
 
