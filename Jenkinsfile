@@ -62,20 +62,19 @@
                 }
             }
         }
+
+    stage ('Send Email') {
+        echo "Mail Stage";
+
+         mail to: "lokeshreddy4590@gmail.com",
+         cc: 'lokeshreddy05690@gmail.com', charset: 'UTF-8', 
+         from: 'lokeshreddy05690@gmail.com', mimeType: 'text/html', replyTo: '', 
+         bcc: '',
+         subject: "CI: Project name -> ${env.JOB_NAME}",
+         body: "<b>Example</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> URL de build: ${env.BUILD_URL}";
+    }    
             
     }
 
-
-    post {
-       always {
-               archiveArtifacts artifacts: '*.csv', onlyIfSuccessful: true
-                
-                emailext to: "lokeshreddy4590@gmail.com",
-                subject: "jenkins build:${currentBuild.currentResult}: ${env.JOB_NAME}",
-                body: "${currentBuild.currentResult}: Job ${env.JOB_NAME}\nMore Info can be found here: ${env.BUILD_URL}",
-                attachmentsPattern: '*.csv'
-                
-            cleanWs()
-            }
-        }
+    
 }
