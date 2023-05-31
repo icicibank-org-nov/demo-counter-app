@@ -64,18 +64,20 @@
             
              def readPomVersion = readMavenPom file: 'pom.xml'
 
+             def readMavenPom = readMavenPom file: 'pom.xml'
+
              def nexusRepo = readPomVersion.version.endsWith("SNAPSHOT") ? "mavenwebapp-Snapshot" : "mavenwebapp-release"
 
     	nexusArtifactUploader artifacts: 
 		[
 			[
-			artifactId: 'maven-web-application',
+			artifactId: "${readMavenPom.artifactId}",
 			classifier: '', file: 'target/*.war',
 			type: 'war'
 			]
 		], 
 		credentialsId: 'Nexus_crd',
-		groupId: 'com.mt',
+		groupId: "${readMavenPom.groupId}",
 		nexusUrl: '13.127.243.212:8081',
 		nexusVersion: 'nexus3',
 		protocol: 'http',
