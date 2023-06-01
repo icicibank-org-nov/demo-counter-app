@@ -100,21 +100,38 @@
                 
                   sh "docker build -t $JOB_NAME:v1.$BUILD_ID ."
                   sh "docker tag image $JOB_NAME:v1.$BUILD_ID lokeshsdockerhub/$JOB_NAME:v1.$BUILD_ID"
-                  sh "docker tag image $JOB_NAME:v1.$BUILD_ID lokeshsdockerhub/$JOB_NAME:v1.latest"
-
+                  sh "docker tag $JOB_NAME:v1.$BUILD_ID lokeshsdockerhub/$JOB_NAME:latest"
                 }
             }
         }
 
-        stage('PUSH THE DOCKER IMAGE INTO DOCKERHUB'){
+        stage('SCAN THE DOCKER IMAGE'){
+            steps{
+
+                script{
+                   
+                   sh "trivy image lokeshsdockerhub/$JOB_NAME:v1.$BUILD_ID > scan.txt"
+                   sh "cat scan.txt"
+                }
+            }
+        }
+
+        /*stage('PUSH THE DOCKER IMAGE INTO DOCKERHUB'){
 
             steps{
 
                 script{
 
+                    withCredentials([usernameColonPassword(credentialsId: 'docker_auth', variable: 'DOCKERHUB_PWD')]) {
+
+                       sh "docker login -u lokeshsdockerhub --password ${DOCKERHUB_PWD}"
+                       sh "docker push lokeshsdockerhub/$JOB_NAME:v1.$BUILD_ID"
+                       sh "docker push lokeshsdockerhub/$JOB_NAME:latest"
+                    }
+
                 }
             }
-        }
+        }*/
 
     stage ('Send Email') {
         steps{
