@@ -99,6 +99,8 @@
                 script{
                 
                   sh "docker build -t $JOB_NAME:v1.$BUILD_ID ."
+                  sh "docker tag image $JOB_NAME:v1.$BUILD_ID lokeshsdockerhub/$JOB_NAME:v1.$BUILD_ID"
+                  sh "docker tag image $JOB_NAME:v1.$BUILD_ID lokeshdockerhub/$JOB_NAME:latest"
 
                 }
             }
