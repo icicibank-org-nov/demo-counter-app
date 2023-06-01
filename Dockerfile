@@ -1,10 +1,12 @@
-FROM maven:3-alpine as build
+FROM maven:3 as build 
 WORKDIR /app
-RUN mvn clean package
 COPY . .
+RUN mvn clean install 
 
-FROM openjdk:19-alpine
-COPY --from=build app/target/springboot-1.0.0.jar springboot.jar
-EXPOSE 8080
+FROM openjdk:12-alpine
+WORKDIR /app
+COPY /app/target/Uber.jar /app/Uber.jar
 
-ENTRYPOINT [ "java","-jar", "./springboot-*.jar" ]
+EXPOSE 9099
+
+ENTRYPOINT [ "java","-jar","Uber.jar" ]
