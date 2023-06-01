@@ -98,7 +98,7 @@
 
                 script{
                 
-                  sh "ssh -o StrictHostKeyChecking=no ubuntu@13.235.50.3 docker build -t $JOB_NAME:v1.$BUILD_ID ."
+                  sh "docker build -t $JOB_NAME:v1.$BUILD_ID ."
 
                 }
             }
