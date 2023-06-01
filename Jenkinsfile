@@ -45,7 +45,7 @@
             
             steps{
 
-                withSonarQubeEnv(credentialsId: 'sonarqube_cred',installationName: 'sonar') {
+                withSonarQubeEnv(credentialsId: 'sonar_auth',installationName: 'sonarqube') {
 
                     sh "mvn clean package sonar:sonar"
                 }
@@ -56,7 +56,7 @@
 
             steps{
 
-                waitForQualityGate abortPipeline: false, credentialsId: 'sonarqube_cred'
+                waitForQualityGate abortPipeline: false, credentialsId: 'sonar_auth'
                 timeout(time: 1, unit: 'HOURS') {
                 waitForQualityGate abortPipeline: true
                 }
