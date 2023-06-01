@@ -83,7 +83,7 @@
                 nexusVersion: 'nexus3',
                 protocol: 'http',
                 repository: 'Demoapp-release',
-                version: "${readpomVersion}"
+                version: "${readpomVersion.version}"
             }
         }
 
