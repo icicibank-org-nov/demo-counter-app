@@ -122,9 +122,8 @@
 
                 script{
 
-                    withCredentials([usernameColonPassword(credentialsId: 'docker_auth', variable: 'dockerhub_pwd')]) {
-
-                       sh "docker login -u lokeshsdockerhub --password ${dockerhub_pwd}"
+                    withCredentials([string(credentialsId: 'docker_auth', variable: 'dockehub_pwd')]) {
+                       sh "docker login -u lokeshsdockerhub --password ${dockehub_pwd}"
                        sh "docker push lokeshsdockerhub/$JOB_NAME:v1.$BUILD_ID"
                        sh "docker push lokeshsdockerhub/$JOB_NAME:latest"
                     }
