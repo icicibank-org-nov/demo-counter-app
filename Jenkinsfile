@@ -66,24 +66,23 @@
         stage("UPLOAD THE ARTIFACT INTO NEXUS"){
             
             steps{
-
-                def readpomVersion = readMavenPom file: 'pom.xml'
-
-                nexusArtifactUploader artifacts: 
+                
+            nexusArtifactUploader artifacts: 
+            [
                 [
-                    [
-                        artifactId: 'spring-boot-starter-paren',
-                        classifier: '', file: 'target/Uber.jar',
-                        type: 'jar'
-                        ]
-                ],
-                credentialsId: 'Nexus_crd',
-                groupId: 'com.example',
-                nexusUrl: '13.127.59.129:8081',
-                nexusVersion: 'nexus3',
-                protocol: 'http',
-                repository: 'Demoapp-release',
-                version: "${readpomVersion.version}"
+                    artifactId: '${POM_ARTIFACTID}',
+                    classifier: '', file: 'target/: ${POM_ARTIFACTID}-${POM_VERSION}.${POM_PACKAGING}',
+                    type: '${POM_PACKAGING}'
+                    ]
+            ],
+            credentialsId: 'Nexus_crd',
+            groupId: '${POM_GROUPID}',
+            nexusUrl: '13.127.59.129:8081',
+            nexusVersion: 'nexus3',
+            protocol: 'http',
+            repository: 'Demoapp-release',
+            version: '${POM_VERSION}'
+
             }
         }
 
