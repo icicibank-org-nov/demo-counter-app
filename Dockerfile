@@ -9,4 +9,4 @@ COPY /app/target/Uber.jar /app/Uber.jar
 
 EXPOSE 9099
 
-ENTRYPOINT [ "java","-jar","Uber.jar" ]
+ENTRYPOINT [ "java","-jar","./Uber.jar" ]
