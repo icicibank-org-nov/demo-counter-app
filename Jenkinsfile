@@ -100,7 +100,17 @@
                 
                   sh "docker build -t $JOB_NAME:v1.$BUILD_ID ."
                   sh "docker tag image $JOB_NAME:v1.$BUILD_ID lokeshsdockerhub/$JOB_NAME:v1.$BUILD_ID"
-                  sh "docker tag image $JOB_NAME:v1.$BUILD_ID lokeshsdockerhub/$JOB_NAME:latest"
+                  sh "docker tag image $JOB_NAME:v1.$BUILD_ID lokeshsdockerhub/$JOB_NAME:v1.latest"
+
+                }
+            }
+        }
+
+        stage('PUSH THE DOCKER IMAGE INTO DOCKERHUB'){
+
+            steps{
+
+                script{
 
                 }
             }
