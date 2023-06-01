@@ -67,6 +67,8 @@
             
             steps{
 
+                def readmavenpomVersion = readMavenPom file: 'pom.xml'
+
                 nexusArtifactUploader artifacts: 
                 [
                     [
@@ -81,7 +83,7 @@
                 nexusVersion: 'nexus3',
                 protocol: 'http',
                 repository: 'Demoapp-release',
-                version: '1.0.0'
+                version: "${readmavenpomVersion}"
             }
         }
 
