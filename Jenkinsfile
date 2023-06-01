@@ -71,7 +71,7 @@
                 [
                     [
                         artifactId: 'spring-boot-starter-paren',
-                        classifier: '', file: '/target/Uber.jar',
+                        classifier: '', file: 'target/Uber.jar',
                         type: 'jar'
                         ]
                 ],
