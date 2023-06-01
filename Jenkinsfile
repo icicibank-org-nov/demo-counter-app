@@ -63,32 +63,32 @@
             }
         }
 
-        stage("UPLOAD THE ARTIFACT INTO NEXUS"){
-            
-            steps{
+        stage("UPLOAD THE ARTIFACT INTO NEXUS") {
+          
+            steps {
+
+                script {
 
             def readpomVersion = readMavenPom file: 'pom.xml'
 
-            def nexusRepo = readpomVersion.version.endsWith("SNAPSHOT") ? "Demoapp-snapshot" : "Demoapp-release"
-
-                nexusArtifactUploader artifacts: 
+            nexusArtifactUploader artifacts: [
                 [
-                    [
-                        artifactId: 'spring-boot-starter-paren',
-                        classifier: '', file: 'target/Uber.jar',
-                        type: 'jar'
-                        ]
-                ],
-                credentialsId: 'Nexus_crd',
-                groupId: 'com.example',
-                nexusUrl: '13.127.59.129:8081',
-                nexusVersion: 'nexus3',
-                protocol: 'http',
-                repository: nexusRepo ,
-                version: "${readpomVersion.version}"
-            }
+                    artifactId: 'spring-boot-starter-paren',
+                    classifier: '',
+                    file: 'target/Uber.jar',
+                    type: 'jar'
+                ]
+            ],
+            credentialsId: 'Nexus_crd',
+            groupId: 'com.example',
+            nexusUrl: '13.127.59.129:8081',
+            nexusVersion: 'nexus3',
+            protocol: 'http',
+            repository: nexusRepo,
+            version: "${readpomVersion.version}"
+              }
         }
-
+    }       
     stage ('Send Email') {
         steps{
           echo "Mail Stage";
