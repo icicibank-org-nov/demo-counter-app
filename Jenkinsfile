@@ -78,7 +78,7 @@
                 credentialsId: 'Nexus_crd',
                 groupId: 'com.example',
                 nexusUrl: '13.127.59.129:8081',
-                nexusVersion: 'nexus2',
+                nexusVersion: 'nexus3',
                 protocol: 'http',
                 repository: 'Demoapp-release',
                 version: '1.0.0'
