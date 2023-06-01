@@ -4,6 +4,7 @@ RUN mvn clean package
 COPY . .
 
 FROM openjdk:19-alpine
-COPY --from=build app/target/springboot-*.jar /springboot-*.jar
+COPY --from=build app/target/springboot-1.0.0.jar springboot.jar
+EXPOSE 8080
 
-ENTRYPOINT [ "java","jar", "springboot-*.jar" ]
+ENTRYPOINT [ "java","-jar", "./springboot-*.jar" ]
