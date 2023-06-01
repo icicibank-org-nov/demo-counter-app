@@ -88,9 +88,22 @@
             protocol: 'http',
             repository: nexusRepo ,
             version: "${readpomVersion.version}"
-              }
+                  }
+             } 
         }
-    }       
+
+        stage("BUILD DOCKER IMAGE"){
+
+            steps{
+
+                script{
+                
+                  sh "ssh -o StrictHostKeyChecking=no ubuntu@13.235.50.3 docker build -t $JOB_NAME:v1.$BUILD_ID ."
+
+                }
+            }
+        }
+
     stage ('Send Email') {
         steps{
           echo "Mail Stage";
