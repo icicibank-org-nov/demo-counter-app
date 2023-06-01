@@ -84,7 +84,7 @@
             nexusUrl: '13.127.59.129:8081',
             nexusVersion: 'nexus3',
             protocol: 'http',
-            repository: nexusRepo,
+            repository: 'Demoapp-release',
             version: "${readpomVersion.version}"
               }
         }
