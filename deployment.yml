@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-counter-app
+spec:
+  selector:
+    matchLabels:
+      app: counter-app
+  template:
+    metadata:
+      labels:
+        app: counter-app
+    spec:
+      containers:
+      - name: demo-counter-app-container
+        image: lokeshsdockerhub/democounter-app:v1.build
+        resources:
+          requests:
+            cpu: 512m
+            memory: 512Mi
+          limits:
+            memory: "600Mi"
+            cpu: "800m"
+        ports:
+        - containerPort: 9099
+---
