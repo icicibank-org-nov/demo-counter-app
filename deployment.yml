@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: demo-counter-app-container
-        image: lokeshsdockerhub/democounter-app:v1
+        image: lokeshsdockerhub/democounter-app:latest
         resources:
           requests:
             cpu: 512m
