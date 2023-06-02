@@ -83,7 +83,7 @@
             ],
             credentialsId: 'Nexus_crd',
             groupId: 'com.example',
-            nexusUrl: '3.6.38.134:8080',
+            nexusUrl: '65.2.78.45:8081',
             nexusVersion: 'nexus3',
             protocol: 'http',
             repository: nexusRepo ,
