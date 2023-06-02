@@ -132,16 +132,7 @@
             }
         }
 
-        stage('UPDATE THE IMAGE TAG'){
-            
-            steps{
-
-                script{
-                    sh "sed -i 's/build/${BUILD_ID}/g' deployment.yml"
-                }
-            }
-        }
-
+         
     stage ('Send Email') {
         steps{
           echo "Mail Stage";
