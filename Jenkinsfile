@@ -105,7 +105,7 @@
             }
         }
 
-        /*stage('SCAN THE DOCKER IMAGE'){
+        stage('SCAN THE DOCKER IMAGE'){
             steps{
 
                 script{
@@ -114,7 +114,7 @@
                    sh "cat scan.txt"
                 }
             }
-        }*/
+        }
 
         stage('PUSH THE DOCKER IMAGE INTO DOCKERHUB'){
 
